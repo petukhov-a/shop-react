@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import Items from "./component/Items";
@@ -48,11 +48,25 @@ const App = () => {
       }
     ]
   );
+  const [orders, setOrders] = useState([]);
+
+  const addToOrder = (item) => {
+    let isInArray = false;
+    orders.forEach(el => {
+      if (el.id === item.id) {
+        isInArray = true;
+      }
+    });
+
+    if (!isInArray) {
+      setOrders(orders => [...orders, item]);
+    }
+  }
 
   return (
     <div className="wrapper">
-      <Header/>
-      <Items items={items}/>
+      <Header orders={orders}/>
+      <Items items={items} onAdd={addToOrder}/>
       <Footer/>
     </div>
   );
