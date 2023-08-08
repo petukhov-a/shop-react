@@ -20,7 +20,7 @@ const showNothing = () => {
     )
 }
 
-export default function Header(props) {
+const Header = (props) => {
     
     let [cartOpen, setCartOpen] = useState(false);
 
@@ -46,3 +46,5 @@ export default function Header(props) {
     </header>
     )
 }
+
+export default Header;

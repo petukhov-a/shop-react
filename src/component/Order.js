@@ -1,4 +1,4 @@
-
+import { FaTrash } from 'react-icons/fa'; 
 
 const Order = (props) => {
   return (
@@ -6,6 +6,7 @@ const Order = (props) => {
         <img src={props.item.img}/>
         <h2>{props.item.title}</h2>
         <b>{props.item.price}$</b>
+        <FaTrash className='delete-icon'/>
     </div>
   )
 }
