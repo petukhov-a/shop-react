@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import Items from "./component/Items";
+import Categories from "./component/Categories";
 
 const App = () => {
   const [items, setItems] = useState(
@@ -35,7 +36,7 @@ const App = () => {
         title: "Лампа",
         img: "./img/wall-light.jpeg",
         desc: "Описание стула",
-        category: "lamp",
+        category: "light",
         price: '100',
       },
       {
@@ -49,6 +50,7 @@ const App = () => {
     ]
   );
   const [orders, setOrders] = useState([]);
+  const [currentItems, setCurrentItems] = useState(items);
 
   const deleteOrder = (id) => {
     setOrders(orders => orders.filter(el => el.id !== id));
@@ -67,10 +69,20 @@ const App = () => {
     }
   }
 
+  const chooseCategory = (category) => {
+    if (category === 'all') {
+      setCurrentItems(items);
+      return
+    }
+    
+    setCurrentItems(items.filter(item => item.category === category));
+  }
+
   return (
     <div className="wrapper">
       <Header orders={orders} onDelete={deleteOrder}/>
-      <Items items={items} onAdd={addToOrder}/>
+      <Categories chooseCategory={chooseCategory}/>
+      <Items items={currentItems} onAdd={addToOrder}/>
       <Footer/>
     </div>
   );
