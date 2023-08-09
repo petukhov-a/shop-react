@@ -12,7 +12,7 @@ const App = () => {
         img: "./img/chair-grey.jpeg",
         desc: "Описание стула",
         category: "chairs",
-        price: 100,
+        price: '100',
       },
       {
         id: 2,
@@ -20,7 +20,7 @@ const App = () => {
         img: "./img/table.webp",
         desc: "Описание стула",
         category: "tables",
-        price: 100,
+        price: '100',
       },
       {
         id: 3,
@@ -28,7 +28,7 @@ const App = () => {
         img: "./img/sofa.jpeg",
         desc: "Описание стула",
         category: "sofa",
-        price: 100,
+        price: '100',
       },
       {
         id: 4,
@@ -36,7 +36,7 @@ const App = () => {
         img: "./img/wall-light.jpeg",
         desc: "Описание стула",
         category: "lamp",
-        price: 100,
+        price: '100',
       },
       {
         id: 5,
@@ -44,11 +44,15 @@ const App = () => {
         img: "./img/chair-white.jpeg",
         desc: "Описание стула",
         category: "chairs",
-        price: 100,
+        price: '100',
       }
     ]
   );
   const [orders, setOrders] = useState([]);
+
+  const deleteOrder = (id) => {
+    setOrders(orders => orders.filter(el => el.id !== id));
+  }
 
   const addToOrder = (item) => {
     let isInArray = false;
@@ -65,7 +69,7 @@ const App = () => {
 
   return (
     <div className="wrapper">
-      <Header orders={orders}/>
+      <Header orders={orders} onDelete={deleteOrder}/>
       <Items items={items} onAdd={addToOrder}/>
       <Footer/>
     </div>

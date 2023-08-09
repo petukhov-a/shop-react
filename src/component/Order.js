@@ -6,7 +6,7 @@ const Order = (props) => {
         <img src={props.item.img}/>
         <h2>{props.item.title}</h2>
         <b>{props.item.price}$</b>
-        <FaTrash className='delete-icon'/>
+        <FaTrash className='delete-icon' onClick={() => props.onDelete(props.item.id)}/>
     </div>
   )
 }
